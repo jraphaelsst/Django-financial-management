@@ -1,0 +1,112 @@
+{% extends 'bases/base.html' %}
+{% load static %}
+{% block 'head' %}
+
+    <link href="{% static 'perfil/css/home.css' %}" rel="stylesheet">
+    <link href="{% static 'perfil/css/gerenciar.css' %}" rel="stylesheet">
+    <link href="{% static 'extrato/css/view_extrato.css' %}" rel="stylesheet">
+
+{% endblock %}
+
+{% block 'body' %}
+    <div class='container'>
+        {% if messages %}
+            {% for message in messages %}
+                <div class='alert {{message.tags}}'>
+                    {{message}}
+                </div>
+            {% endfor %}
+        {% endif %}
+        <div class="row">
+            <div class='d-flex col-12' style='width:100%;'>
+                <div class='col-6' style='border:1px solid white;'>
+                    <button style="position:relative; width:20%; left:40%;" class="botao-secundario">
+                        <a href="{% url 'view_extrato' %}" style='text-decoration:none; color:#BABABA;'>
+                            Extrato
+                        </a>
+                    </button>
+                </div>
+                <div class='col-6' style='border:1px solid white'>
+                    <button style="position:relative; width:20%; left:40%;" class="botao-secundario">
+                        <a href="{% url 'novo_valor' %}" style='text-decoration:none; color:#BABABA;'>
+                            Novo
+                        </a>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <br>
+
+        <form action="{% url 'view_extrato' %}" method="GET">
+        <div class="row">
+            <div class="col-md">
+                <label>Banco</label>
+                <select name="banco" class="form-select">
+                    {% for banco in bancos %}
+                        <option value="{{banco.id}}">{{banco}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="col-md">
+                <label>Categoria</label>
+                <select name="categoria" class="form-select">
+                    {% for categoria in categorias %}
+                        <option value="{{categoria.id}}">{{categoria}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="col-md">
+                <label>Período</label>
+                <select name="periodo" class="form-select">
+                    <option>Últimos 7 dias</option>
+                </select>
+            </div>
+        </div>
+        <br>
+        <br>
+        <div class="row">
+            <div class="col-md-2">
+                <input style="width: 100%" type="submit" class="botao-secundario" value="Filtrar">
+                
+            </div>
+            </form>
+            <div class="col-sm-2">
+                <a href="{% url 'exportar_pdf' %}" class="botao-secundario">PDF</a>
+            </div>
+        </div>
+        <br>
+        <br>
+
+
+        <div class="card">
+            
+                <table>
+                    <tr>
+                        <th>Banco</th>
+                        <th>Categoria</th>
+                        <th>Data</th>
+                        <th>Tipo</th>
+                        <th>valor</th>
+                    </tr>
+                    
+                    {% for valor in valores %}
+                        <tr class="{% cycle 'linha' 'linha2' %}">
+                            <td width="10%">{{valor.banco}}</td>
+                            <td>{{valor.categoria}}</td>
+                            <td>{{valor.data|date:"D, d/m/Y"}}</td>
+                            <td>
+                            {% if valor.tipo == 'S'%}
+                                <i class="fa-solid fa-circle-arrow-down" style="color: #cd0e0e;"></i>
+                            {% else %}
+                                <i class="fa-solid fa-circle-arrow-up" style="color: #5bbc1a;"></i>
+                            {% endif %}
+                            </td>
+                            <td>R$ {{valor.valor}}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+        </div>
+    </div>
+{% endblock %}

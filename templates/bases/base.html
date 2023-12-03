@@ -1,0 +1,90 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="https://kit.fontawesome.com/8d0a84d67a.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="{% static 'geral/css/base.css' %}" rel="stylesheet">
+    
+    <title>{% block 'title' %}{% endblock %}</title>
+
+    {% block 'head' %}{% endblock %}
+  
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary navbar-color" data-bs-theme="dark">
+      <div class="container">
+        <div class='d-flex flex-row justify-content-between'>
+          <div class='col'>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <span>
+              <a class="navbar-brand" href="{% url 'home' %}">
+                <i class="fa-solid fa-house-chimney fa-lg" style="color: #dbe8ff;"></i>
+              </a>
+            </span>
+          </div>
+          <div class='col'>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'dashboard' %}" role="button" aria-expanded="false">
+                      Dashboard
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'view_extrato' %}" role="button" aria-expanded="false">
+                      Extrato
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'gerenciar_bancos' %}" role="button">
+                      Bancos
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'gerenciar_categorias' %}" role="button">
+                      Categorias
+                  </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'gerenciar_categorias' %}" role="button">
+                        Despesas
+                    </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'ver_planejamento' %}" role="button">
+                      Planejamento
+                  </a>
+                </li>
+                <li class='nav-item'>
+                  <a class='nav-link' href="" role="button">
+                    <i class="fa-solid fa-arrow-right-from-bracket fa-xl" style="color: #dbe8ff;"></i>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div style="min-height: 2vh">
+        {% block 'conteudo' %}
+        
+        {% endblock %}
+    </div>
+
+    <div class="fundo-pagina">
+        
+    </div>
+    {% block 'body' %}{% endblock %}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

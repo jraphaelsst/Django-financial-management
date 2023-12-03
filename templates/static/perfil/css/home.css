@@ -1,0 +1,112 @@
+.card{
+
+    width: 100%;
+    background-color: var(--main-color);
+    padding: 20px;
+
+}
+
+.fonte-destaque{
+
+    color: #BABABA;
+    font-weight: bold;
+    font-size: 20px;
+
+}
+
+.fonte-destaque-menor{
+
+    color: #BABABA;
+    font-weight: bold;
+    font-size: 17px;
+
+}
+
+
+.font-light{
+
+    color: #BABABA;
+    font-weight: 300;
+
+}
+
+.hr-borda{
+    color: white;
+}
+
+.lista-conta{
+    background-color: var(--dark-color);
+    padding: 8px;
+    border-radius: 10px;
+
+}
+
+.lista-contas-main{
+
+}
+
+.botao-principal{
+
+    text-decoration: none;
+    color: #BABABA;
+    font-weight: bold;
+    font-size: 14px;
+    padding: 6.5px;
+    background-color: var(--dark-color);
+    text-align: center;
+    border-radius: 8px;
+    border: none;
+
+}
+
+.botao-principal:hover{
+
+    text-decoration: none;
+    color: white;
+
+}
+
+.total-conta{
+    color: #BABABA;
+    font-weight: 200;
+    float: right;
+}
+
+.nav-item{
+    align-self: center;
+}
+
+.navbar-brand{
+    align-self: center;
+}
+
+li {
+    padding-left:5%;
+}
+
+.saldo{
+    border-left: 2px solid var(--contrast-color);
+    padding-left: 10px;
+}
+
+.despesa{
+
+    border-right: 2px solid #BABABA;
+    text-align: right;
+    padding-right: 10px;
+}
+
+.negativo{
+    color: var(--differential-color);
+}
+
+.positivo{
+    color: var(--contrast-color);
+}
+
+
+.icone-setas{
+
+    width: 50%;
+    display: inline;
+}

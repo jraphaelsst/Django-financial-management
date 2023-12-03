@@ -1,0 +1,76 @@
+{% extends 'bases/base.html' %}
+{% load static %}
+{% block 'head' %}
+
+    <link href="{% static 'perfil/css/home.css' %}" rel="stylesheet">
+    <link href="{% static 'extrato/css/view_extrato.css' %}" rel="stylesheet">
+
+{% endblock %}
+
+{% block 'body' %}
+
+    <div class="container">
+        <br>
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert {{ message.tags }}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+        <button style="width:40%;" class="botao-secundario">
+            <a href="{% url 'ver_despesas' %}" style='text-decoration:none; color:white;'>
+                Todas as Contas
+            </a>
+        </button>
+        <br>
+        <span class="fonte-destaque">Adicionar Gastos Mensais</span>
+        <br>
+        <br>
+        <div class="row">
+
+            <div class="col-md-7">
+                <form action="{% url 'definir_despesas' %}" method="POST">{% csrf_token %}
+                    <div class="row">
+                        <div class="col-md">
+                            <label>Título</label>
+                            <input name="titulo" type="text" class="form-control">
+                        </div>
+
+                        <div class="col-md">
+                            <label>Categoria</label>
+                            <select name="categoria" class="form-select">
+                                {% for categoria in categorias %}
+                                    <option value="{{categoria.id}}">{{categoria}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <br>
+                    <label>Descrição</label>
+                    <textarea name="descricao" class="form-control"></textarea>
+                    <br>
+                    <div class="row">
+                        <div class="col-md">
+                            <label>Valor</label>  
+                            <input name="valor" type="number" class="form-control">
+                        </div>
+
+                        <div class="col-md">
+                            <label>Dia de pagamento</label>
+                            <input name="dia_pagamento" min="1" max="31" type="number" class="form-control">
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <input type="submit" value='Cadastrar' style="width:40%;" class="botao-secundario">
+
+                </form>
+            </div>
+
+            <div class="col-md-8">
+            </div>
+
+        </div>
+
+    </div>
+
+{% endblock %}

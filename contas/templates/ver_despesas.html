@@ -1,0 +1,143 @@
+{% extends 'bases/base.html' %}
+{% load static %}
+{% block 'head' %}
+
+    <link href="{% static 'perfil/css/home.css' %}" rel="stylesheet">
+    <link href="{% static 'extrato/css/view_extrato.css' %}" rel="stylesheet">
+
+    <style>
+        .linha-conta{
+
+            background-color: var(--dark-color);
+            padding: 8px 4px 8px 4px;
+            margin: 6px;
+            border-radius: 5px;
+
+        }
+    </style>
+{% endblock %}
+
+{% block 'body' %}
+
+    <div class="container">
+        <br>
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert {{ message.tags }}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+
+        <button style="width:40%;" class="botao-secundario">
+            <a href="{% url 'definir_despesas' %}" style='text-decoration:none; color:white;'>
+                Nova Recorrênca
+            </a>
+        </button>
+        
+        <br>
+        <div class="row">
+
+            <div class="col-md-8">
+                <p class="fonte-destaque" style="color: red;">Vencidas</p>
+                <div class="card">
+
+                    {% if not despesas_vencidas %}
+                        <p>Sem contas vencidas.</p>
+                    {% else %}
+                        {% for despesa in despesas_vencidas %}
+                            <div class="linha-conta">
+                                <div class="row">
+                                    <div class="col-md text-center">
+                                        {{despesa}}
+                                    </div>
+                                    <div class="col-md text-center">
+                                        Dia: {{despesa.dia_pagamento}}
+                                    </div>
+                                    <div class="col-md text-center">
+                                        Valor: {{despesa.valor}}
+                                    </div>
+                                    <div class="col-md text-center">
+                                        <a href="#" class="botao-secundario">Pagar</a>
+                                    </div>
+                                    <div class="col-md text-center">
+                                        <a href="{% url 'apagar_despesa' despesa.id %}" class="botao-secundario">Deletar</a>
+                                    </div>
+                                </div>
+                            </div>
+                       {% endfor %}
+                    {% endif %}
+
+                </div>
+                <br>
+                <br>
+                <p class="fonte-destaque" style="color: #E96363;">Próximas do vencimento</p>
+                <div class="card">
+
+                    {% if not contas_vencidas %}
+                        <p>Sem contas próximas.</p>
+                    {% else %}
+                        {% for conta in contas_proximas_vencimento %}
+                            <div class="linha-conta">
+                                <div class="row">
+                                    <div class="col-md text-center">
+                                        {{conta}}
+                                    </div>
+                                    <div class="col-md text-center">
+                                        Dia: {{conta.dia_pagamento}}
+                                    </div>
+                                    <div class="col-md text-center">
+                                        Valor: {{conta.valor}}
+                                    </div>
+                                    <div class="col-md text-center">
+                                        <a href="#" class="botao-secundario">Pagar</a>
+                                    </div>
+                                    <div class="col-md text-center">
+                                        <a href="{% url 'apagar_despesa' conta.id %}" class="botao-secundario">Deletar</a>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+
+                </div>
+                <br>
+                <br>
+                <p class="fonte-destaque">Restantes</p>
+                <div class="card">
+
+                    {% if not contas_vencidas %}
+                    <p>Sem mais contas.</p>
+                    {% else %}
+                        {% for conta in restantes %}
+                            <div class="linha-conta">
+                                <div class="row">
+                                    <div class="col-md text-center">
+                                        {{conta}}
+                                    </div>
+                                    <div class="col-md text-center">
+                                        Dia: {{conta.dia_pagamento}}
+                                    </div>
+                                    <div class="col-md text-center">
+                                        Valor: {{conta.valor}}
+                                    </div>
+                                    <div class="col-md text-center">
+                                        <a href="#" class="botao-secundario">Pagar</a>
+                                    </div>
+                                    <div class="col-md text-center">
+                                        <a href="{% url 'apagar_despesa' conta.id %}" class="botao-secundario">Deletar</a>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+
+            </div>
+
+            <div class="col-md-4">
+            </div>
+
+        </div>
+
+    </div>
+
+{% endblock %}

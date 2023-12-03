@@ -1,0 +1,62 @@
+table{
+    width: 100%;
+    padding: 20px;
+    text-align: center;
+
+}
+
+.linha{
+    height: 20px;
+    background-color: transparent;
+    padding: 10px;
+    border-top: 1px solid #919191;
+}
+
+.linha2{
+    height: 20px;
+    background-color: #333333;
+    padding: 10px;
+    border-top: 1px solid #919191;
+}
+
+
+td, th{
+    padding: 20px;
+}
+
+tr{
+    background-color: var(--main-color);
+
+}
+
+.botao-principal{
+    font-size: 14px;
+}
+
+.botao-secundario{
+
+    background-color: transparent;
+    color: #BABABA;
+    text-decoration: none;
+    border: 0.5px solid #BABABA;
+    padding: 6px;
+    border-radius: 8px;
+    width: 100%;
+    display: block;
+    text-align: center;
+    font-size: 14px;
+
+}
+
+.botao-secundario:hover{
+    text-decoration: none;
+    color: black;
+    background-color:white;
+}
+
+.campo-valor{
+
+    width: 45%;
+    margin: 0 auto;
+
+}
